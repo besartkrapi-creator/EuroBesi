@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyçu - EuroBesi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Kyçu në EuroBesi</h2>
+        <form method="POST" action="/login">
+            <label for="username">Përdoruesi:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Fjalëkalimi:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Kyçu</button>
+        </form>
+        <p>Nuk ke llogari? <a href="/register">Regjistrohu këtu</a></p>
+    </div>
+</body>
+</html>
