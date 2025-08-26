@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paneli - EuroBesi</title>
+</head>
+<body>
+    <h2>Mirësevjen në EuroBesi ({{ role }})</h2>
+
+    {% if role == 'admin' %}
+    <h3>Shto projekt të ri</h3>
+    <form method="POST" action="{{ url_for('add_project') }}">
+        <input type="text" name="name" placeholder="Emri i projektit" required>
+        <button type="submit">Shto</button>
+    </form>
+    {% endif %}
+
+    <h3>Projektet</h3>
+    <ul>
+    {% for p in projects %}
+        <li><a href="{{ url_for('project_detail', project_id=p['id']) }}">{{ p['name'] }}</a></li>
+    {% endfor %}
+    </ul>
+
+    <a href="/logout">Dil</a>
+</body>
+</html>
