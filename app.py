@@ -137,30 +137,24 @@ def add_report(project_id):
 def logout():
     session.clear()
     return redirect(url_for("login"))
-
-if __name__ == "__main__":
-    init_db()
-    app.run(debug=True)
-with app.app_context():
-    init_db()with app.app_context():
-    init_db()def create_default_admin():
+def create_default_admin():
     conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
     # kontrollo nëse admin ekziston
     c.execute("SELECT * FROM users WHERE username=?", ("admin",))
     if not c.fetchone():
-        from werkzeug.security import generate_password_hash
-        hashed_pw = generate_password_hash("admin123")
         c.execute("INSERT INTO users (username, password, role) VALUES (?,?,?)",
-                  ("admin", hashed_pw, "admin"))
+                  ("admin", "admin123", "admin"))
         conn.commit()
     conn.close()
+
+
 if __name__ == "__main__":
     init_db()
     create_default_admin()
     app.run(debug=True)
 
-# Ky bllok siguron që databaza dhe admini default të krijohen edhe në Render
+# Ky bllok ekzekutohet kur jemi në Render (me gunicorn)
 with app.app_context():
     init_db()
     create_default_admin()
