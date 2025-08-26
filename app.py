@@ -155,3 +155,12 @@ with app.app_context():
                   ("admin", hashed_pw, "admin"))
         conn.commit()
     conn.close()
+if __name__ == "__main__":
+    init_db()
+    create_default_admin()
+    app.run(debug=True)
+
+# Ky bllok siguron që databaza dhe admini default të krijohen edhe në Render
+with app.app_context():
+    init_db()
+    create_default_admin()
