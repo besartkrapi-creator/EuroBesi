@@ -1,5 +1,5 @@
 flask
-gunicorn
 pandas
 openpyxl
 reportlab
+flask-mail
