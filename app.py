@@ -143,4 +143,15 @@ if __name__ == "__main__":
     app.run(debug=True)
 with app.app_context():
     init_db()with app.app_context():
-    init_db()
+    init_db()def create_default_admin():
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    # kontrollo nëse admin ekziston
+    c.execute("SELECT * FROM users WHERE username=?", ("admin",))
+    if not c.fetchone():
+        from werkzeug.security import generate_password_hash
+        hashed_pw = generate_password_hash("admin123")
+        c.execute("INSERT INTO users (username, password, role) VALUES (?,?,?)",
+                  ("admin", hashed_pw, "admin"))
+        conn.commit()
+    conn.close()
