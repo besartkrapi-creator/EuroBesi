@@ -1,0 +1,1 @@
+# EuroBesi FINAL app code (placeholder, gjeneruar më herët)
