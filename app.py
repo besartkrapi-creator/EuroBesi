@@ -9,10 +9,12 @@ import os
 app = Flask(__name__)
 app.secret_key = "sekreti_eurobesi"
 DB_NAME = "database.db"
-@app.before_first_request
+@app.before_request
 def initialize():
-    init_db()
-    create_default_admin()
+    if not hasattr(app, "db_initialized"):
+        init_db()
+        create_default_admin()
+        app.db_initialized = True
 
 def init_db():
     conn = sqlite3.connect(DB_NAME)
