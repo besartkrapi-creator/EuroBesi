@@ -1,1 +1,0 @@
-// voice input script placeholder
