@@ -1,6 +1,0 @@
-flask
-pandas
-openpyxl
-reportlab
-flask-mail
-gunicorn
