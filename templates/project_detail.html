@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detajet e Projektit</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/voice.js"></script>
+</head>
+<body>
+    <h2>Shpenzimet</h2>
+    <form method="post" action="/add_expense/{{project_id}}">
+        <input type="text" name="description" placeholder="Përshkrimi">
+        <input type="number" step="0.01" name="amount" placeholder="Shuma">
+        <button type="submit">Shto</button>
+    </form>
+    <ul>
+        {% for e in expenses %}
+        <li>{{e[2]}} - {{e[3]}} EUR</li>
+        {% endfor %}
+    </ul>
+    <p><b>Total:</b> {{total}} EUR</p>
+
+    <h2>Raportet</h2>
+    <form method="post" action="/add_report/{{project_id}}">
+        <textarea id="report" name="report"></textarea>
+        <button type="submit">Shto Raport</button>
+        <button type="button" onclick="startDictation()">🎤 Raporto me Zë</button>
+    </form>
+    <ul>
+        {% for r in reports %}
+        <li>{{r[2]}}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Eksporto:</h3>
+    <a href="/export_excel/{{project_id}}">📊 Excel</a> | 
+    <a href="/export_pdf/{{project_id}}">📄 PDF</a>
+</body>
+</html>

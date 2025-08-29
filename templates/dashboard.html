@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EuroBesi - Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Projektet</h2>
+    {% if role == "admin" %}
+    <form method="post" action="/add_project">
+        <input type="text" name="name" placeholder="Emri i projektit">
+        <button type="submit">Shto Projekt</button>
+    </form>
+    {% endif %}
+    <ul>
+        {% for p in projects %}
+        <li><a href="/project/{{p[0]}}">{{p[1]}}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
